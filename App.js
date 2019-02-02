@@ -7,10 +7,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    lineHeight: 100,
+    lineHeight: 300,
   },
   imageStyle: {
-    height: 400,
+    height: 300,
+    width: 390,
   },
   containerStyle: {
     alignItems: 'center',
@@ -18,11 +19,13 @@ const styles = StyleSheet.create({
   }
 })
 
-export default class difFonts extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.containerStyle}>
-        <Image style={styles.imageStyle} source={require('./assets/cardrive.gif')} />
+      <View
+        style={styles.containerStyle}>
+        <Image
+          style={styles.imageStyle} source={require('./assets/cardrive.gif')} />
         <Text style={styles.mainFont}>You're Ready To Start Booking!</Text>
         <Button title='Okay, Got It' color='green'> type='clear'</Button>
       </View >
