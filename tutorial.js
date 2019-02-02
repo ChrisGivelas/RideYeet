@@ -1,30 +1,30 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
-export default class Tutorial extends React.Component {
+export class Tutorial extends React.Component {
 
     render() {
         return (
             <View style={styles.container}>
                 <Image
-                    style={{}}
-                    source={"RideYeet/assets/alternateLOGO"}
+                    style={styles.gologo}
+                    source={"./assets/goLogo.jpg"}
                 />
                 <Image
-                    style={{}}
-                    source={"RideYeet/assets/alternateLOGO"}
+                    style={styles.megalogo}
+                    source={"./assets/megaBus.jpg"}
                 />
                 <Image
-                    style={{}}
-                    source={"RideYeet/assets/alternateLOGO"}
+                    style={styles.kajlogo}
+                    source={"./assets/kajLogo.png"}
                 />
                 <Image
-                    style={{}}
-                    source={"RideYeet/assets/alternateLOGO"}
+                    style={styles.vialogo}
+                    source={"./assets/viaLogo.jpg"}
                 />
-                <Text>WELCOME TO RIDEYEET!</Text>
-                <Button title="proceed"><Text>Proceed!</Text></Button>
-                <Button title="skip"><Text>Skip!</Text></Button>
+                <Text style={style.aboutheader}>What we do</Text>
+                <Text style={style.aboutbody}>Lorem ipsum dolor sit amet, ei saperet eleifend percipitur sed. Pri idque ignota ad. Ut sea diam aeque cetero, vis porro voluptua menandri no, liber bonorum nam ei. Pro causae constituam inciderint te, denique nominavi suavitate cu mel.</Text>
+                <Button title="back"><Text>back</Text></Button>
             </View>
         );
     }
@@ -32,12 +32,56 @@ export default class Tutorial extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+        display: flex,
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'Seashell',
     },
-    welcomebanner: {
+    gologo: {
+        width: 100,
+        height: 100,
+        borderRadius: 25,
+        margin: 'auto',
 
+    },
+    megalogo: {
+        width: 100,
+        height: 100,
+        borderRadius: "25px",
+        margin: 'auto',
+    },
+    kajlogo: {
+        width: 100,
+        height: 100,
+        borderRadius: "25px",
+        margin: 'auto',
+    },
+    vialogo: {
+        width: 100,
+        height: 100,
+        borderRadius: "25px",
+        margin: 'auto',
+    },
+    aboutheader: {
+        font: "verdana",
+        fontWeight: 'bold',
+        fontSize: '24em',
+        textColor: 'FF5C5C',
+        margin: 'auto',
+    },
+    aboutbody: {
+        font: 'verdana',
+        fontSize: '12em',
+        textColor: 'DarkSlateGrey',
+        margin: 'auto',
+    },
+    backbutton: {
+        font: 'verdana',
+        fontSize: '12em',
+        color: 'DarkSlateGrey',
+        margin: 'auto',
     }
 });
