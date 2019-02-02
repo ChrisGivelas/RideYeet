@@ -29,6 +29,7 @@ const kijijiScraper = (originName, destinationName) => {
                 saleItem.price = textCleanUp($(this).find('.price').text());
                 saleItem.title = textCleanUp($(this).find('a').text());
                 listAds.push(saleItem);
+                return listAds;
             });
             console.log(listAds);
         })
