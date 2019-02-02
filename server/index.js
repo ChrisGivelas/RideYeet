@@ -1,18 +1,27 @@
-
-
+// ===========================
+// NPM  INSTALLED PACKAGES
+// ===========================
 const express = require('express');
 const ip = require('ip');
 const axios = require('axios');
+
+
+// ===========================
+// LOCAL IMPORTS
+// ===========================
+const megabus = require('./megabus');
+
+
 const port = process.env.port || 8080;
 
 
-// Tentative megabus code (at least the format of it)
-let destinationID = 275; //Whitby
-let originID = 276; //Kingston
-let departureDate = "2019-02-04"; //Feb 4th
-let kingstonToWhitby = "https://ca.megabus.com/journey-planner/api/journeys?originId=" + originID + "&destinationId=" + destinationID + "&departureDate=2019-02-04&totalPassengers=1&concessionCount=0&nusCount=0&otherDisabilityCount=0&wheelchairSeated=0&pcaCount=0&days=1"
-let kingstonToCornwall = "https://ca.megabus.com/journey-planner/api/journeys?originId=276&destinationId=278&departureDate=2019-02-02&totalPassengers=1&concessionCount=0&nusCount=0&otherDisabilityCount=0&wheelchairSeated=0&pcaCount=0&days=1"
+// Tentative kijiji code
+let searchTerms = "acoustic-guitar";
+let kijijiUrl = 'https://www.kijiji.ca/b-oakville-halton-region/' + searchTerms + '/k0l' + id + '?dc=true'
 
+axios.get('/getRoutes', (req, res) > {
+
+})
 
 // axios.get(kingstonToWhitby)
 //     .then(response => console.log(response.data))
