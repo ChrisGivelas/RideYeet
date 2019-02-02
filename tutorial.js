@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
 
 export default class Tutorial extends React.Component {
     render() {
+        console.log(this.props)
         return (
             <View style={styles.container}>
                 <View style={styles.pair1}>
@@ -92,9 +93,6 @@ export default class Tutorial extends React.Component {
                     aeque cetero, vis porro voluptua menandri no, liber bonorum nam ei. Pro causae constituam inciderint
                     te, denique nominavi suavitate cu mel.
                 </Text>
-                <Button title="back">
-                    <Text>back</Text>
-                </Button>
             </View>
         )
     }
