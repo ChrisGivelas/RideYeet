@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    lineHeight: 130,
+    lineHeight: 100,
   },
   imageStyle: {
     height: 400,
@@ -22,11 +22,9 @@ export default class difFonts extends React.Component {
   render() {
     return (
       <View style={styles.containerStyle}>
-        <Image
-          source={require('./assets/rideyeetlogo.png')} style={styles.imageStyle} />
-        <Text style={styles.mainFont}>WELCOME TO RIDEYEET</Text>
-        <Button title='proceed' color='red'><text> Proceed</text></Button>
-        <Button title='skip' color='black'><text>Skip</text></Button>
+        <Image style={styles.imageStyle} source={require('./assets/cardrive.gif')} />
+        <Text style={styles.mainFont}>You're Ready To Start Booking!</Text>
+        <Button title='Okay, Got It' color='green'> type='clear'</Button>
       </View >
     );
   }
