@@ -3,22 +3,27 @@ const { locations, query } = require('./ghettoDB');
 
 
 
-const scraper = (origin, destination, date) => {
+const megabusScraper = (origin, destination, date) => {
     let destinationID = query(locations, destination).megabus;
     let originID = query(locations, origin).megabus;
-    let date = date;
+    let tripDate = "2019-02-04";
 
-    let megabusUrl = "https://ca.megabus.com/journey-planner/api/journeys?originId=" + originID + "&destinationId=" + destinationID + "&departureDate=" + date + "&totalPassengers=1&concessionCount=0&nusCount=0&otherDisabilityCount=0&wheelchairSeated=0&pcaCount=0&days=1";
+    let megabusUrl = "https://ca.megabus.com/journey-planner/api/journeys?originId=" + originID + "&destinationId=" + destinationID + "&departureDate=" + tripDate + "&totalPassengers=1&concessionCount=0&nusCount=0&otherDisabilityCount=0&wheelchairSeated=0&pcaCount=0&days=1";
 
+    axios.get(megabusUrl)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(err => console.log(err))
 };
 
 
 
 
 
-// module.exports = {
-
-// }
+module.exports = {
+    megabusScraper
+}
 
 
 

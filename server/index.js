@@ -9,22 +9,18 @@ const axios = require('axios');
 // ===========================
 // LOCAL IMPORTS
 // ===========================
-const megabus = require('./megabus');
+const { megabusScraper } = require('./megabus');
+const { kijijiScraper } = require('./kijiji');
 
 
+// ===========================
+// global variable declarations
+// ===========================
 const port = process.env.port || 8080;
+const app = express();
 
 
-// Tentative kijiji code
-let searchTerms = "acoustic-guitar";
-let kijijiUrl = 'https://www.kijiji.ca/b-oakville-halton-region/' + searchTerms + '/k0l' + id + '?dc=true'
 
-axios.get('/getRoutes', (req, res) > {
-
-})
-
-// axios.get(kingstonToWhitby)
-//     .then(response => console.log(response.data))
-//     .catch(err => console.log(err))
-
-
+app.listen(port, () => {
+    console.log('server started at http://' + ip.address() + ':' + port)
+});
