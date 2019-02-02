@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   mainFont: {
@@ -25,6 +25,8 @@ export default class difFonts extends React.Component {
         <Image
           source={require('./assets/rideyeetlogo.png')} style={styles.imageStyle} />
         <Text style={styles.mainFont}>WELCOME TO RIDEYEET</Text>
+        <Button title='proceed' color='red'><text> Proceed</text></Button>
+        <Button title='skip' color='black'><text>Skip</text></Button>
       </View >
     );
   }
