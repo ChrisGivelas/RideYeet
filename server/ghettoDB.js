@@ -1,17 +1,17 @@
-const locations = [
+const demo_locations = [
     {
         name: "Toronto",
         megabus: 145,
         kijiji: 1700272,
         via: 119,
-        go: null,
+        go: "UN",
         kijijiName: "gta-greater-toronto-area"
     },
     {
         name: "Montreal",
         megabus: 280,
         kijiji: 80002,
-        via: null,
+        via: 226,
         go: null,
         kijijiName: "grand-montreal"
     },
@@ -19,7 +19,7 @@ const locations = [
         name: "Kingston",
         megabus: 276,
         kijiji: 1700181,
-        via: null,
+        via: 452,
         go: null,
         kijijiName: "kingston-area"
     },
@@ -27,7 +27,7 @@ const locations = [
         name: "Waterloo",
         megabus: 422,
         kijiji: 1700212,
-        via: null,
+        via: 234,
         go: null,
         kijijiName: "kitchener-waterloo"
     },
@@ -35,22 +35,20 @@ const locations = [
         name: "Whitby",
         megabus: 275,
         kijiji: 1700275,
-        via: null,
-        go: null,
+        via: 572,
+        go: "WH",
         kijijiName: "oshawa-durham-region"
     }
-];
+]
 
-const query = (locationArray, locationName) => {
-    let targetLocation = locationArray.filter(location => {
-        return location.name == locationName;
-    });
-    return targetLocation[0];
-};
-
-
+const query = (locationName, locations = demo_locations) => {
+    let targetLocation = locations.filter(location => {
+        return location.name === locationName
+    })
+    return targetLocation[0]
+}
 
 module.exports = {
-    locations,
+    demo_locations,
     query
 }
