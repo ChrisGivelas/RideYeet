@@ -3,6 +3,7 @@ import HomePage from "./screens/HomePage"
 import Tutorial1 from "./screens/Tutorial1"
 import Tutorial2 from "./screens/Tutorial2"
 import BookingScreen from "./screens/BookingScreen"
+import ResultsPage from "./screens/ResultsPage"
 
 const AppNavigator = createStackNavigator(
     {
@@ -17,6 +18,9 @@ const AppNavigator = createStackNavigator(
         },
         Booking: {
             screen: BookingScreen
+        },
+        Results: {
+            screen: ResultsPage
         }
     },
     {

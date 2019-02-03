@@ -71,7 +71,7 @@ class ResultPane extends React.Component {
     render() {
         return (
             <View style={styles.pane} onPress={() => this.onSelect(this.props.id)}>
-                <Image style={styles.icon} source={require("./assets/megaBus.jpg")} alt={'Megabus Logo'} />
+                <Image style={styles.icon} source={require("../assets/megaBus.jpg")} alt={'Megabus Logo'} />
                 <View style={styles.descriptionView}>
                     <Text style={styles.time}>{`${this.props.startTime} - ${this.props.arriveTime}`}</Text>
                     <Text style={styles.description}>{this.props.description}</Text>
@@ -129,7 +129,7 @@ export default class Results extends React.Component {
     render() {
         return (
             <ScrollView style={styles.page}>
-                <Image style={styles.pageHeader} source={require("./assets/toBanner.jpg")} alt={'Megabus Logo'} />
+                <Image style={styles.pageHeader} source={require("../assets/toBanner.jpg")} alt={'Megabus Logo'} />
                 <ResultsList onSelect={this.onSelect} results={this.state.results} selected={this.state.selected} ></ResultsList>
             </ScrollView>
         )

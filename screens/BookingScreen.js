@@ -19,9 +19,7 @@ class BookingScreen extends Component {
     }
 
     // Write code to navigate to search results here here
-    onPressBook = () => {
-        alert('Yo');
-    }
+    onPressBook = () => this.props.navigation.navigate("Results")
 
 
     render() {
