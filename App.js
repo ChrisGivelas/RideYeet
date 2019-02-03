@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   mainFont: {
-    color: 'red',
+    color: '#ff5c5c',
     fontSize: 25,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 300,
   },
@@ -32,4 +32,3 @@ export default class App extends React.Component {
     );
   }
 }
-
