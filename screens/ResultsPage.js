@@ -63,6 +63,26 @@ const styles = StyleSheet.create({
     priceView: {
         flex: 1,
         width: "10%"
+    },
+    header1: {
+        color: "white",
+        fontWeight: "500",
+        fontSize: 16,
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 10
+    },
+    header2: {
+        color: "white",
+        fontWeight: "500",
+        fontSize: 45,
+        position: 'absolute',
+        top: 28,
+        left: 5,
+        right: 10,
+        bottom: 25
     }
 
 })
@@ -83,7 +103,6 @@ class ResultPane extends React.Component {
             </View >
         )
     }
-
 }
 
 class ResultsList extends React.Component {
@@ -130,6 +149,8 @@ export default class Results extends React.Component {
         return (
             <ScrollView style={styles.page}>
                 <Image style={styles.pageHeader} source={require("../assets/toBanner.jpg")} alt={'Megabus Logo'} />
+                <Text style={styles.header1}> Your Trip To... </Text>
+                <Text style={styles.header2}> {this.props.navigation.getParam('destination', '')} </Text>
                 <ResultsList onSelect={this.onSelect} results={this.state.results} selected={this.state.selected} ></ResultsList>
             </ScrollView>
         )
