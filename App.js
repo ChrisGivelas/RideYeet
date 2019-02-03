@@ -1,7 +1,8 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, Button } from "react-native"
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Tutorial from "./tutorial"
+import Results from "./ResultsPage";
+import Tutorial from "./tutorial";
 
 const styles = StyleSheet.create({
   mainFont: {
@@ -33,7 +34,6 @@ export class DifFonts extends React.Component {
           title='Okay, Got It'
           onPress={() => this.props.navigation.navigate('Welcome')}
           color='green'>
-          type='clear'
         </Button>
       </View >
     );
@@ -45,10 +45,10 @@ const AppNavigator = createStackNavigator({
     screen: DifFonts,
   },
   Welcome: {
-    screen: Tutorial,
+    screen: Results,
   },
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Welcome',
   });
 
 export default createAppContainer(AppNavigator);
