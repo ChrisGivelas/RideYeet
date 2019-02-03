@@ -9,14 +9,17 @@ const bodyParser = require("body-parser")
 // LOCAL IMPORTS
 // ===========================
 
-//functions
+//Functions for html scrapers
 const { megabusScraper } = require("./megabus")
 const { kijijiScraper } = require("./kijiji")
 
-//classes
+//Classes for gtfs parsers
 // Call {class Name}.search(origin, destination, date) to retrieve data
-const ViaScraperService = require("./sources/viarail/index.js")
-const GoScraperService = require("./sources/go/index.js")
+const Via_GtfsParserService = require("./sources/viarail/index.js")
+const viaSearch = new ViaScraperService().search
+
+const Go_GtfsParserService = require("./sources/go/index.js")
+const goSearch = new GoScraperService().search
 
 // ===========================
 // global variable declarations and middleware
@@ -37,12 +40,11 @@ app.post("/trips", (req, res) => {
     let date = req.body.date;
 
     var resultPromises = [
-        callScraper("megabus", megabusScraper, origin, destination, date),
-        callScraper("kijiji", kijijiScraper, origin, destination)
-        // callScraper("via", viaScraper, origin, destination),
-        // callScraper("go", goScraper, origin, destination)
+        callScraper("megabus", megabusScraper, origin, destination),
+        callScraper("kijiji", kijijiScraper, origin, destination),
+        callScraper("via", viaSearch, origin, destination),
+        callScraper("go", goSearch, origin, destination)
     ]
-
 
     Promise.all(resultPromises).then(results => {
         console.log(results)
