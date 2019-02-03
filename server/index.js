@@ -25,19 +25,19 @@ const port = process.env.port || 8080
 const app = express()
 app.use(bodyParser.json())
 
-const callScraper = async function (name, scraper, origin, destination) {
-    var result = await scraper(origin, destination)
+const callScraper = async function (name, scraper, origin, destination, date) {
+    var result = await scraper(origin, destination, date)
     return { name, result }
 }
 
 // Send json to this route to get your results
 app.post("/trips", (req, res) => {
     let origin = req.body.origin
-    let destination = req.body.destination
-    let date = req.body.date
+    let destination = req.body.destination;
+    let date = req.body.date;
 
     var resultPromises = [
-        callScraper("megabus", megabusScraper, origin, destination),
+        callScraper("megabus", megabusScraper, origin, destination, date),
         callScraper("kijiji", kijijiScraper, origin, destination)
         // callScraper("via", viaScraper, origin, destination),
         // callScraper("go", goScraper, origin, destination)

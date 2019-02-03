@@ -20,9 +20,6 @@ const megabusScraper = (origin, destination, date) => {
 };
 
 
-
-
-
 module.exports = {
     megabusScraper
 }

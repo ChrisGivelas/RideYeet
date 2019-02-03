@@ -6,24 +6,23 @@ import axios from 'axios';
 
 class BookingScreen extends Component {
     state = {
-        orig: '',
-        dest: '',
+        origin: '',
+        desination: '',
         date: "2019-02-05"
     };
 
     changeOrig = (location) => {
-        this.setState({ orig: location });
+        this.setState({ origin: location });
     };
 
     changeDest = (location) => {
-        this.setState({ dest: location });
+        this.setState({ destination: location });
     }
 
     // Write code to navigate to search results here here
-    onPressBook = () => this.props.navigation.navigate("Results")
-
-    // }
-
+    onPressBook = () => this.props.navigation.navigate("Results", {
+        ...state
+    });
 
     render() {
         return (
@@ -31,14 +30,14 @@ class BookingScreen extends Component {
                 <View style={styles.imageContainer}>
                     <View styles={styles.imageSubcontainer} >
                         <Image source={require('../assets/flying-city.png')} style={styles.imageStyle} />
-                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.orig} </Text>
+                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.origin} </Text>
                     </View>
                     <View styles={styles.imageSubcontainer}>
                         <Image source={require('../assets/arrow.png')} style={styles.arrowStyle} />
                     </View>
                     <View style={styles.imageSubcontainer}>
                         <Image source={require('../assets/smart-city-2.png')} style={styles.imageStyle} />
-                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.dest} </Text>
+                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.destination} </Text>
                     </View>
                 </View>
                 <View style={styles.pickerContainer}>
