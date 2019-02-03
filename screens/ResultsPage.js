@@ -125,6 +125,16 @@ export default class Results extends React.Component {
         }
     }
     componentDidMount() {
+        axios({
+            method: 'post',
+            url: 'http://10.217.215.190:8009/testRoute',
+            data: {
+                origin: this.props.navigation.getParam('origin', ''),
+                destination: this.props.navigation.getParam('destination', ''),
+                date: this.props.navigation.getParam('date', '')
+            }
+        });
+
 
     }
 
