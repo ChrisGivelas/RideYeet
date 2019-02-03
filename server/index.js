@@ -3,28 +3,32 @@
 // ===========================
 const express = require('express');
 const ip = require('ip');
-const axios = require('axios');
-
+const bodyParser = require('body-parser');
 
 // ===========================
 // LOCAL IMPORTS
 // ===========================
-const megabus = require('./megabus');
+const { megabusScraper } = require('./megabus');
+const { kijijiScraper } = require('./kijiji');
 
 
+// ===========================
+// global variable declarations and middleware
+// ===========================
 const port = process.env.port || 8080;
+const app = express();
+app.use(bodyParser.json());
 
+// Send json to this route to get your results
+app.post('/trips', (req, res) => {
+    let origin = req.body.origin;
+    let destination = req.body.destination;
 
-// Tentative kijiji code
-let searchTerms = "acoustic-guitar";
-let kijijiUrl = 'https://www.kijiji.ca/b-oakville-halton-region/' + searchTerms + '/k0l' + id + '?dc=true'
-
-axios.get('/getRoutes', (req, res) > {
-
+    let kijijiAds = kijijiScraper(origin, destination);
 })
 
-// axios.get(kingstonToWhitby)
-//     .then(response => console.log(response.data))
-//     .catch(err => console.log(err))
 
-
+// app listens on available port
+app.listen(port, () => {
+    console.log('server started at http://' + ip.address() + ':' + port)
+});
