@@ -1,7 +1,8 @@
 import React from "react"
 import { StyleSheet, Text, View, Image, Button } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Tutorial from "./tutorial"
+import Tutorial from "./tutorial";
+import BookingScreen from './screens/BookingScreen';
 
 const styles = StyleSheet.create({
   mainFont: {
@@ -47,6 +48,9 @@ const AppNavigator = createStackNavigator({
   Welcome: {
     screen: Tutorial,
   },
+  Booking: {
+    screen: BookingScreen
+  }
 }, {
     initialRouteName: 'Home',
   });
