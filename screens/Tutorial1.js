@@ -84,10 +84,7 @@ export default class Tutorial1 extends React.Component {
                 </View>
                 <Text style={styles.aboutheader}>What We Do</Text>
                 <Text style={styles.aboutbody}>
-                    We save you time and money! Instead of shopping around on dozens of different websites: let us collect the best
-                    deals for you! Just enter your current location and your destination and we'll find you the least expensive way
-                    to get there. Need to get somewhere in a hurry? We can find you the fastest trip to where you need to be. With
-                    many different ways to optimize your trip, we'll get you to wherever life takes you. Your way.
+                    Let us know where you're travelling to and we will handle the rest. We will give you all available travel plans from our partners so that you can pick a trip that best suits your needs. Whether you're looking for value, safety, convenience, or comfort, there is something for you here at RideYeet!
                 </Text>
                 <TouchableOpacity
                     onPress={() => this.props.navigation.navigate("Tutorial2")}

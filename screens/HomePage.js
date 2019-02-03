@@ -52,7 +52,7 @@ export default class HomePage extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate("Booking")}
-                        style={{ ...styles.buttonStyle, backgroundColor: "red" }}
+                        style={{ ...styles.buttonStyle, backgroundColor: "#ff5c5c" }}
                     >
                         <Text style={{ color: "white", fontWeight: "500", textAlign: "center" }}>Skip Tutorial</Text>
                     </TouchableOpacity>
