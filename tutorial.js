@@ -81,11 +81,11 @@ export default class Tutorial extends React.Component {
             <View style={styles.container}>
                 <View style={styles.pair1}>
                     <Image style={styles.gologo} source={require("./assets/goLogo.jpg")} alt={'Go Train Logo'} />
-                    <Image style={styles.megalogo} source={require("./assets/megaBus.jpg")} alt={'Go Train Logo'} />
+                    <Image style={styles.megalogo} source={require("./assets/megaBus.jpg")} alt={'Megabus Logo'} />
                 </View>
                 <View style={styles.pair2}>
-                    <Image style={styles.kajlogo} source={require("./assets/kajLogo.png")} alt={'Go Train Logo'} />
-                    <Image style={styles.vialogo} source={require("./assets/viaLogo.png")} alt={'Go Train Logo'} />
+                    <Image style={styles.kajlogo} source={require("./assets/kajLogo.png")} alt={'Kajiji Logo'} />
+                    <Image style={styles.vialogo} source={require("./assets/viaLogo.png")} alt={'Via Logo'} />
                 </View>
                 <Text style={styles.aboutheader}>What We Do</Text>
                 <Text style={styles.aboutbody}>
