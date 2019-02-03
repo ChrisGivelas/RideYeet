@@ -84,9 +84,7 @@ export default class Tutorial1 extends React.Component {
                 </View>
                 <Text style={styles.aboutheader}>What We Do</Text>
                 <Text style={styles.aboutbody}>
-                    Lorem ipsum dolor sit amet, ei saperet eleifend percipitur sed. Pri idque ignota ad. Ut sea diam
-                    aeque cetero, vis porro voluptua menandri no, liber bonorum nam ei. Pro causae constituam inciderint
-                    te, denique nominavi suavitate cu mel.
+                    Let us know where you're travelling to and we will handle the rest. We will give you all available travel plans from our partners so that you can pick a trip that best suits your needs. Whether you're looking for value, safety, convenience, or comfort, there is something for you here at RideYeet!
                 </Text>
                 <TouchableOpacity
                     onPress={() => this.props.navigation.navigate("Tutorial2")}
