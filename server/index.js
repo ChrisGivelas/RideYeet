@@ -30,7 +30,7 @@ const port = process.env.port || 8080
 const app = express()
 app.use(bodyParser.json())
 
-const callScraper = async function(name, scraper, origin, destination, date) {
+const callScraper = async function (name, scraper, origin, destination, date) {
     var result = await scraper(origin, destination, date)
     return { name, result }
 }
@@ -39,7 +39,7 @@ const callScraper = async function(name, scraper, origin, destination, date) {
 app.post("/trips", (req, res) => {
     let origin = req.body.origin
     let destination = req.body.destination
-    let date = req.body.date
+    let date = req.body.date;
 
     var resultPromises = [
         callScraper("megabus", megabusScraper, origin, destination),
@@ -50,7 +50,6 @@ app.post("/trips", (req, res) => {
 
     Promise.all(resultPromises)
         .then(results => {
-            console.log(results[2].result)
             res.send(results)
         })
         .catch(err => console.log(err))

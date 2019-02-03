@@ -2,19 +2,24 @@ import React, { Component } from 'react';
 import { View, Picker, StyleSheet } from 'react-native'
 
 class LocationPicker extends Component {
-    state = {
-        selectedLocation: ''
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            selectedLocation: this.props.selected
+        }
     }
 
     updateUser = (location) => {
-        this.props.changeState(location);
         this.setState({ selectedLocation: location })
+        this.props.changeState(location);
     }
 
     render() {
         return (
             <View >
                 <Picker selectedValue={this.state.selectedLocation} onValueChange={this.updateUser} >
+                    <Picker.Item label="Please select a city..." value="?" style={styles.pickerStyle} />
                     <Picker.Item label="Toronto" value="Toronto" style={styles.pickerStyle} />
                     <Picker.Item label="Montreal" value="Montreal" style={styles.pickerStyle} />
                     <Picker.Item label="Kingston" value="Kingston" style={styles.pickerStyle} />

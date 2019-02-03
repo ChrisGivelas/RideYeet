@@ -5,7 +5,7 @@ import Tutorial2 from "./screens/Tutorial2"
 import BookingScreen from "./screens/BookingScreen"
 import ResultsPage from "./screens/ResultsPage"
 import ViaRail from "./screens/ViaRail"
-import MegaBusPayment from './screen/MegaBusPayment'
+import MegaBusPayment from './screens/MegaBusPayment'
 
 const AppNavigator = createStackNavigator(
     {

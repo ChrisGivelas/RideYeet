@@ -5,18 +5,21 @@ import DatePicker from 'react-native-datepicker';
 
 
 class BookingScreen extends Component {
-    state = {
-        origin: '',
-        desination: '',
-        date: "2019-02-05"
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            origin: '?',
+            desination: '?',
+            date: "2019-02-05"
+        };
+    }
 
     changeOrig = (location) => {
-        this.setState({ origin: location });
+        this.setState((prev) => ({ ...prev, origin: location }));
     };
 
     changeDest = (location) => {
-        this.setState({ destination: location });
+        this.setState((prev) => ({ ...prev, destination: location }));
     }
 
     // Write code to navigate to search results here here
@@ -28,22 +31,22 @@ class BookingScreen extends Component {
                 <View style={styles.imageContainer}>
                     <View styles={styles.imageSubcontainer} >
                         <Image source={require('../assets/flying-city.png')} style={styles.imageStyle} />
-                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.origin} </Text>
+                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.origin !== '?' ? this.state.origin : ""} </Text>
                     </View>
                     <View styles={styles.imageSubcontainer}>
                         <Image source={require('../assets/arrow.png')} style={styles.arrowStyle} />
                     </View>
                     <View style={styles.imageSubcontainer}>
                         <Image source={require('../assets/smart-city-2.png')} style={styles.imageStyle} />
-                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.destination} </Text>
+                        <Text style={{ color: '#ff5c5c', fontWeight: '500' }}>{this.state.destination !== '?' ? this.state.destination : ""} </Text>
                     </View>
                 </View>
                 <View style={styles.pickerContainer}>
                     <View style={styles.centration}>
                         <Text style={{ color: '#ff5c5c', fontWeight: '400' }}>Origin </Text>
-                        <LocationPicker changeState={this.changeOrig} />
+                        <LocationPicker changeState={this.changeOrig} selected={this.state.origin} />
                         <Text style={{ color: '#ff5c5c', fontWeight: '400' }}>Destination </Text>
-                        <LocationPicker changeState={this.changeDest} />
+                        <LocationPicker changeState={this.changeDest} selected={this.state.desination} />
                         <View style={{ alignItems: 'center' }}>
                             <DatePicker
                                 style={{ width: 200, padding: 20 }}
