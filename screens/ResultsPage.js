@@ -16,28 +16,28 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         justifyContent: "center",
-        margin: "auto",
+        margin: "auto"
     },
     time: {
         fontSize: 16,
-        color: "#ff5c5c",
+        color: "#ff5c5c"
     },
     description: {
         fontSize: 12,
         textAlign: "left",
-        color: "#2f4f4f",
+        color: "#2f4f4f"
     },
     duration: {
         fontWeight: "bold",
         fontSize: 24,
         textAlign: "right",
-        color: "#ff5c5c",
+        color: "#ff5c5c"
     },
     price: {
         fontWeight: "bold",
         textAlign: "right",
         fontSize: 14,
-        color: "#000000",
+        color: "#000000"
     },
     pane: {
         display: "flex",
@@ -85,14 +85,13 @@ const styles = StyleSheet.create({
         right: 10,
         bottom: 25
     }
-
 })
 
 class ResultPane extends React.Component {
     render() {
         return (
             <View style={styles.pane} onPress={() => this.onSelect(this.props.id)}>
-                <Image style={styles.icon} source={require("../assets/megaBus.jpg")} alt={'Megabus Logo'} />
+                <Image style={styles.icon} source={require("../assets/megaBus.jpg")} alt={"Megabus Logo"} />
                 <View style={styles.descriptionView}>
                     <Text style={styles.time}>{`${this.props.startTime} - ${this.props.arriveTime}`}</Text>
                     <Text style={styles.description}>{this.props.description}</Text>
@@ -101,7 +100,7 @@ class ResultPane extends React.Component {
                     <Text style={styles.duration}>{this.props.duration}</Text>
                     <Text style={styles.price}>{this.props.price}</Text>
                 </View>
-            </View >
+            </View>
         )
     }
 }
@@ -110,7 +109,9 @@ class ResultsList extends React.Component {
     render() {
         return (
             <View style={styles.listPane}>
-                {this.props.results.map(result => <ResultPane {...result} onSelect={this.props.onSelect} selected={this.props.selected} />)}
+                {this.props.results.map(result => (
+                    <ResultPane {...result} onSelect={this.props.onSelect} selected={this.props.selected} />
+                ))}
             </View>
         )
     }

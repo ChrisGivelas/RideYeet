@@ -2,7 +2,7 @@ const csvtojson = require("csvtojson")
 const fs = require("fs")
 const db = require("../../ghettoDB.js")
 
-const GTFS_RELATIVE_PATH = "gtfs"
+const GTFS_RELATIVE_PATH = "sources/viarail/gtfs"
 const filesToIgnore = []
 
 class Via_GtfsParserService {
@@ -16,16 +16,13 @@ class Via_GtfsParserService {
             return await csvtojson()
                 .fromFile(file)
                 .then(json => {
-                    console.log(`Done ${file}`)
                     return { file, json }
                 })
         })
-
-        this.aggregatedPromise = Promise.all(gtfsJsons)
     }
 
     async search(origin, destination) {
-        return await this.aggregatedPromise
+        return await Promise.all(this.gtfsPromises)
             .then(jsons => {
                 return jsons.reduce((acc, curr) => {
                     return { ...acc, [curr.file]: curr.json }
@@ -38,11 +35,23 @@ class Via_GtfsParserService {
                 var originId = originInfo.via
                 var destinationId = destinationInfo.via
 
-                var results = jsons["gtfs/routes.txt"].filter(
-                    routes => routes.route_id === `${originId}-${destinationId}`
+                var routes = jsons[`${GTFS_RELATIVE_PATH}/routes.txt`].filter(
+                    route => route.route_id === `${originId}-${destinationId}`
                 )
 
-                return results
+                const mockedRouteData = routes.map(route => {
+                    let temp = {}
+                    temp.price = Math.floor(Math.random() * 50 + 40)
+                    temp.depart = Math.floor(Math.random() * 24)
+                    temp.arrive = (temp.depart + 3) % 24
+                    temp.origin = origin
+                    temp.destination = destination
+                    temp.description = route.route_long_name
+
+                    return temp
+                })
+
+                return mockedRouteData
             })
     }
 }

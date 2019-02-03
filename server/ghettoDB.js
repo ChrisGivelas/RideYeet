@@ -19,7 +19,7 @@ const demo_locations = [
         name: "Kingston",
         megabus: 276,
         kijiji: 1700181,
-        via: 452,
+        via: 58,
         go: null,
         kijijiName: "kingston-area"
     },

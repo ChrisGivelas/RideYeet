@@ -15,11 +15,13 @@ const { kijijiScraper } = require("./kijiji")
 
 //Classes for gtfs parsers
 // Call {class Name}.search(origin, destination, date) to retrieve data
-const Via_GtfsParserService = require("./sources/viarail/index.js")
-const viaSearch = new ViaScraperService().search
+const Via = require("./sources/viarail/index.js")
+const ViaGTFS = new Via()
+const viaSearch = ViaGTFS.search.bind(ViaGTFS)
 
-const Go_GtfsParserService = require("./sources/go/index.js")
-const goSearch = new GoScraperService().search
+const Go = require("./sources/go/index.js")
+const GoGTFS = new Go()
+const goSearch = GoGTFS.search.bind(GoGTFS)
 
 // ===========================
 // global variable declarations and middleware
@@ -28,7 +30,7 @@ const port = process.env.port || 8080
 const app = express()
 app.use(bodyParser.json())
 
-const callScraper = async function (name, scraper, origin, destination, date) {
+const callScraper = async function(name, scraper, origin, destination, date) {
     var result = await scraper(origin, destination, date)
     return { name, result }
 }
@@ -36,8 +38,8 @@ const callScraper = async function (name, scraper, origin, destination, date) {
 // Send json to this route to get your results
 app.post("/trips", (req, res) => {
     let origin = req.body.origin
-    let destination = req.body.destination;
-    let date = req.body.date;
+    let destination = req.body.destination
+    let date = req.body.date
 
     var resultPromises = [
         callScraper("megabus", megabusScraper, origin, destination),
@@ -46,10 +48,12 @@ app.post("/trips", (req, res) => {
         callScraper("go", goSearch, origin, destination)
     ]
 
-    Promise.all(resultPromises).then(results => {
-        console.log(results)
-        res.send(results)
-    })
+    Promise.all(resultPromises)
+        .then(results => {
+            console.log(results[2].result)
+            res.send(results)
+        })
+        .catch(err => console.log(err))
 })
 
 // app listens on available port

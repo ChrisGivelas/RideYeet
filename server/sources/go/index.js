@@ -2,7 +2,7 @@ const csvtojson = require("csvtojson")
 const fs = require("fs")
 const db = require("../../ghettoDB.js")
 
-const GTFS_RELATIVE_PATH = "gtfs"
+const GTFS_RELATIVE_PATH = "sources/go/gtfs"
 const filesToIgnore = ["shapes.txt", "stop_times", "trips.txt"]
 
 class Go_GtfsParserService {
@@ -16,16 +16,13 @@ class Go_GtfsParserService {
             return await csvtojson()
                 .fromFile(file)
                 .then(json => {
-                    console.log(`Done ${file}`)
                     return { file, json }
                 })
         })
-
-        this.aggregatedPromise = Promise.all(gtfsJsons)
     }
 
     async search(origin, destination) {
-        return await this.aggregatedPromise
+        return await Promise.all(this.gtfsPromises)
             .then(jsons => {
                 return jsons.reduce((acc, curr) => {
                     return { ...acc, [curr.file]: curr.json }
@@ -38,7 +35,7 @@ class Go_GtfsParserService {
                 var originId = originInfo.go
                 var destinationId = destinationInfo.go
 
-                var results = jsons["gtfs/routes.txt"].filter(
+                var results = jsons[`${GTFS_RELATIVE_PATH}/routes.txt`].filter(
                     routes => routes.route_id === `${originId}-${destinationId}`
                 )
 
