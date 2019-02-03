@@ -42,7 +42,7 @@ const demo_locations = [
 ]
 
 const query = (locationName, locations = demo_locations) => {
-    let targetLocation = locations.filter(location => {
+    let targetLocation = demo_locations.filter(location => {
         return location.name === locationName
     })
     return targetLocation[0]

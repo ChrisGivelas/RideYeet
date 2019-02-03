@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import LocationPicker from './LocationPicker.js';
 import DatePicker from 'react-native-datepicker';
+import axios from 'axios';
 
 class BookingScreen extends Component {
     state = {
@@ -20,6 +21,8 @@ class BookingScreen extends Component {
 
     // Write code to navigate to search results here here
     onPressBook = () => this.props.navigation.navigate("Results")
+
+    // }
 
 
     render() {
