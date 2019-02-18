@@ -42,7 +42,7 @@ app.post("/trips", (req, res) => {
     let date = req.body.date;
 
     var resultPromises = [
-        callScraper("megabus", megabusScraper, origin, destination),
+        callScraper("megabus", megabusScraper, origin, destination, date),
         callScraper("kijiji", kijijiScraper, origin, destination),
         callScraper("via", viaSearch, origin, destination),
         callScraper("go", goSearch, origin, destination)
@@ -50,9 +50,14 @@ app.post("/trips", (req, res) => {
 
     Promise.all(resultPromises)
         .then(results => {
-            res.send(results)
+            let resultsJson = JSON.stringify(results);
+            res.send(resultsJson);
         })
         .catch(err => console.log(err))
+});
+
+app.get('/', (req, res) => {
+    res.send('Test Route')
 })
 
 // app listens on available port

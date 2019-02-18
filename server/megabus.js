@@ -6,10 +6,10 @@ const { demo_locations, query } = require('./ghettoDB');
 const megabusScraper = (origin, destination, date) => {
     let destinationID = query(destination, demo_locations).megabus;
     let originID = query(origin, demo_locations).megabus;
-    let tripDate = "2019-02-05";
+    let tripDate = date;
 
     let megabusUrl = "https://ca.megabus.com/journey-planner/api/journeys?originId=" + originID + "&destinationId=" + destinationID + "&departureDate=" + tripDate + "&totalPassengers=1&concessionCount=0&nusCount=0&otherDisabilityCount=0&wheelchairSeated=0&pcaCount=0&days=1";
-
+    console.log(megabusUrl);
     return new Promise((resolve, reject) => {
         axios.get(megabusUrl)
             .then(response => {

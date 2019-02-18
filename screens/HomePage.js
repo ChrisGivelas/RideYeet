@@ -40,8 +40,8 @@ export default class HomePage extends React.Component {
         return (
             <View>
                 <View style={styles.containerStyle}>
-                    <Image style={styles.imageStyle} source={require("../assets/rideyeetlogo.png")} />
-                    <Text style={styles.mainFont}>Welcome To RIDEYEET!</Text>
+                    <Image style={styles.imageStyle} source={require("../assets/MeridioLogo.png")} />
+                    <Text style={styles.mainFont}>Welcome To Meridio!</Text>
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity

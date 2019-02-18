@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 class ResultPane extends React.Component {
     render() {
         return (
-            <TouchableOpacity style={styles.pane}>
+            <TouchableOpacity style={styles.pane} onPress={() => alert("More to come soon")}>
                 <Image style={styles.icon} source={require("../assets/megaBus.jpg")} alt={"Megabus Logo"} />
                 <View style={styles.descriptionView}>
                     <Text style={styles.time}>{`${this.props.startTime} - ${this.props.arriveTime}`}</Text>
@@ -157,7 +157,7 @@ export default class Results extends React.Component {
     render() {
         let resultSet = <ResultsList results={this.mockData} />
         return (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("Payment")}>
+            <TouchableOpacity onPress={() => alert("More to come soon")}>
                 <ScrollView style={styles.page}>
                     <Image style={styles.pageHeader} source={require("../assets/toBanner.jpg")} alt={'Megabus Logo'} />
                     <Text style={styles.header1}> Your Trip To... </Text>
