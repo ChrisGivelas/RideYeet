@@ -6,6 +6,7 @@ import BookingScreen from "./screens/BookingScreen"
 import ResultsPage from "./screens/ResultsPage"
 import ViaRail from "./screens/ViaRail"
 import MegaBusPayment from './screens/MegaBusPayment'
+import TestScreen from './screens/TestScreen';
 
 const AppNavigator = createStackNavigator(
     {

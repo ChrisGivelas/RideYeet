@@ -14,6 +14,8 @@ class BookingScreen extends Component {
         };
     }
 
+    // travelOptions = { ...this.state }
+
     changeOrig = (location) => {
         this.setState((prev) => ({ ...prev, origin: location }));
     };

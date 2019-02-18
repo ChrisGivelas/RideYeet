@@ -1,7 +1,8 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
 import axios from 'axios';
 
+// array of images being used for the results screen
 const sourceImgs = [
     { name: "Kijiji", path: "../assets/kajLogo.png" },
     { name: "Megabus", path: "../assets/megaBus.jpg" },
@@ -9,6 +10,7 @@ const sourceImgs = [
     { name: "Go", path: "../assets/goLogo.jpg" },
 ]
 
+// Styles
 const styles = StyleSheet.create({
     page: {
         display: "flex"
@@ -94,6 +96,7 @@ const styles = StyleSheet.create({
     }
 })
 
+//ResultPane is a single card that contains information about a trip
 class ResultPane extends React.Component {
     render() {
         return (
@@ -112,6 +115,7 @@ class ResultPane extends React.Component {
     }
 }
 
+// ResultsList is a component that represents the collection of multiple cards
 class ResultsList extends React.Component {
     render() {
         return (
@@ -124,6 +128,7 @@ class ResultsList extends React.Component {
     }
 }
 
+// Results is the component that represents the Result Screen
 export default class Results extends React.Component {
     constructor(props) {
         super(props);
@@ -133,9 +138,8 @@ export default class Results extends React.Component {
         }
         this.something = this.props.navigation.getParam('destination', '');
 
-
         this.mockData = [{ "id": 1, "startTime": "8:22 PM", "arriveTime": "3:17 PM", "description": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.", "duration": 2, "price": "$29.02" },
-        { "id": 2, "startTime": "9:07 PM", "arriveTime": "1:40 PM", "description": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.", "duration": 24, "price": "$94.11" },
+        { "id": 23, "startTime": "9:07 PM", "arriveTime": "1:40 PM", "description": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.", "duration": 24, "price": "$94.11" },
         { "id": 3, "startTime": "3:32 AM", "arriveTime": "8:08 PM", "description": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.", "duration": 24, "price": "$58.08" },
         { "id": 4, "startTime": "1:13 AM", "arriveTime": "5:49 AM", "description": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.", "duration": 4, "price": "$44.63" },
         { "id": 5, "startTime": "8:12 PM", "arriveTime": "6:20 PM", "description": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.", "duration": 13, "price": "$3.40" },
@@ -151,11 +155,38 @@ export default class Results extends React.Component {
         { "id": 15, "startTime": "3:58 PM", "arriveTime": "5:04 PM", "description": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.", "duration": 15, "price": "$95.21" }]
     }
 
+    // USed this to debug whether or not the parameters were actually being passed
+    // componentDidMount() {
+    //     let { navigation } = this.props;
+    //     console.warn(navigation)
+    //     alert("origin: " + navigation.getParam('origin', 'No origin available') + "\nDestination: " + navigation.getParam('destination', 'No destination available') + "\nDate: " + navigation.getParam('date', 'No date availale'))
+    // }
 
     onSelect = (current) => this.setState((prev) => ({ results: prev.results, selected: current }))
 
+    componentDidMount() {
+        let { navigation } = this.props;
+        if (this.state.results == null) {
+            axios({
+                method: "post",
+                url: "http://192.168.0.239:8080/trips",
+                data: {
+                    origin: navigation.getParam('origin', 'No origin available'),
+                    destination: navigation.getParam('destination', 'No destination available'),
+                    date: navigation.getParam('date', 'No date availale')
+                }
+            })
+                .then(results => {
+                    console.warn(results.data)
+                    this.setState({ results: results.data })
+                })
+                .catch(err => alert(err))
+        }
+    }
+
     render() {
-        let resultSet = <ResultsList results={this.mockData} />
+        let resultSet = this.state.results ? <ResultsList results={this.mockData} /> : <ActivityIndicator size="large" color="#ff5c5c" />
+
         return (
             <TouchableOpacity onPress={() => alert("More to come soon")}>
                 <ScrollView style={styles.page}>

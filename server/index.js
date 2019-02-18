@@ -33,19 +33,21 @@ app.use(bodyParser.json())
 const callScraper = async function (name, scraper, origin, destination, date) {
     var result = await scraper(origin, destination, date)
     return { name, result }
-}
+};
 
 // Send json to this route to get your results
 app.post("/trips", (req, res) => {
     let origin = req.body.origin
     let destination = req.body.destination
     let date = req.body.date;
+    console.log("Route was hit\n")
+    console.log({ origin, destination, date })
 
     var resultPromises = [
         callScraper("megabus", megabusScraper, origin, destination, date),
-        callScraper("kijiji", kijijiScraper, origin, destination),
-        callScraper("via", viaSearch, origin, destination),
-        callScraper("go", goSearch, origin, destination)
+        callScraper("kijiji", kijijiScraper, origin, destination)
+        // callScraper("via", viaSearch, origin, destination),
+        // callScraper("go", goSearch, origin, destination)
     ]
 
     Promise.all(resultPromises)
