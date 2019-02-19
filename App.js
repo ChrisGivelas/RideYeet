@@ -33,7 +33,17 @@ const AppNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: "Home"
+        initialRouteName: "Home",
+        // defaultNavigationOptions: {
+        //     headerStyle: {
+        //         backgroundColor: '#ff5c5c',
+        //     },
+        //     headerTileStyle: {
+        //         fontWeight: 'bold',
+        //         color: 'white'
+        //     },
+        // },
+        headerLayoutPreset: 'center'
     }
 )
 

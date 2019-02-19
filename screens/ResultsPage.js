@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground } from "react-native";
 import axios from 'axios';
 import { durationCleaner, dateCleaner } from './helperFunctions/megabusCleaner';
 
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     },
     pageHeader: {
         display: "flex",
-        width: "100%",
-        margin: "auto"
+        margin: "auto",
+        width: '100%'
     },
     listPane: {
         flex: 1,
@@ -133,11 +133,19 @@ class ResultsList extends React.Component {
 
 // Results is the component that represents the Result Screen
 export default class Results extends React.Component {
+    static navigationOptions = {
+        headerTitleStyle: {
+            color: 'white',
+            fontWeight: 'bold',
+            alignSelf: 'center'
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
             results: null,
-            selected: undefined
+            selected: undefined,
         }
         this.something = this.props.navigation.getParam('destination', '');
     }
@@ -164,12 +172,29 @@ export default class Results extends React.Component {
     }
 
     render() {
+        let { navigation } = this.props;
+        let banner = <Image style={styles.pageHeader} source={require('../assets/toBanner.jpg')} alt={'Megabus Logo'} />
         let resultSet = this.state.results ? <ResultsList results={this.state.results[0].result} /> : <ActivityIndicator size="large" color="#ff5c5c" />
 
+
+        if (navigation.getParam('destination') == "Kingston") {
+            banner = <Image style={styles.pageHeader} source={require('../assets/kingstonBannerNew.png')} alt={'Megabus Logo'} />
+        }
+
+        else if (navigation.getParam('destination') == "Whitby") {
+            banner = <Image style={styles.pageHeader} source={require('../assets/whitbyBanner.jpg')} alt={'Megabus Logo'} />
+        }
+        else if (navigation.getParam('destination') == "Waterloo") {
+            banner = <Image style={styles.pageHeader} source={require('../assets/waterlooBanner.jpg')} alt={'Megabus Logo'} />
+        }
+        else if (navigation.getParam('destination') == "Montreal") {
+            banner = <Image style={styles.pageHeader} source={require('../assets/montrealBanner.jpg')} alt={'Megabus Logo'} />
+        }
         return (
             <TouchableOpacity onPress={() => alert("More to come soon")}>
                 <ScrollView style={styles.page}>
-                    <Image style={styles.pageHeader} source={require("../assets/toBanner.jpg")} alt={'Megabus Logo'} />
+                    {banner}
+                    {/* <Image style={styles.pageHeader} source={require('../assets/toBanner.jpg')} alt={'Megabus Logo'} /> */}
                     <Text style={styles.header1}> Your Trip To... </Text>
                     <Text style={styles.header2}> {this.something} </Text>
                     {resultSet}

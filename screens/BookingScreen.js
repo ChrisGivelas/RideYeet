@@ -10,7 +10,8 @@ class BookingScreen extends Component {
         this.state = {
             origin: '?',
             desination: '?',
-            date: "2019-02-05"
+            date: "2019-02-19",
+            imageUri: "../assets/toBanner.jpg"
         };
     }
 
@@ -57,7 +58,7 @@ class BookingScreen extends Component {
                                 placeholder="select date"
                                 format="YYYY-MM-DD"
                                 minDate="2019-02-04"
-                                maxDate="2020-02-04"
+                                maxDate="2022-02-04"
                                 confirmBtnText="Confirm"
                                 cancelBtnText="Cancel"
                                 customStyles={{
