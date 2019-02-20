@@ -194,7 +194,6 @@ export default class Results extends React.Component {
             <TouchableOpacity onPress={() => alert("More to come soon")}>
                 <ScrollView style={styles.page}>
                     {banner}
-                    {/* <Image style={styles.pageHeader} source={require('../assets/toBanner.jpg')} alt={'Megabus Logo'} /> */}
                     <Text style={styles.header1}> Your Trip To... </Text>
                     <Text style={styles.header2}> {this.something} </Text>
                     {resultSet}

@@ -5,12 +5,15 @@ import DatePicker from 'react-native-datepicker';
 
 
 class BookingScreen extends Component {
+
+
+
     constructor(props) {
         super(props)
         this.state = {
             origin: '?',
             desination: '?',
-            date: "2019-02-19",
+            date: (new Date).getFullYear() + "-" + ("0" + ((new Date).getMonth() + 1)).slice(-2) + "-" + (new Date).getDate(),
             imageUri: "../assets/toBanner.jpg"
         };
     }
