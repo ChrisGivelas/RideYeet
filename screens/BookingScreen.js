@@ -58,7 +58,7 @@ class BookingScreen extends Component {
                                 style={{ width: 200, padding: 20 }}
                                 date={this.state.date}
                                 mode="date"
-                                placeholder="select date"
+                                placeholder={(new Date).getFullYear() + "-" + ("0" + ((new Date).getMonth() + 1)).slice(-2) + "-" + (new Date).getDate()}
                                 format="YYYY-MM-DD"
                                 minDate="2019-02-04"
                                 maxDate="2022-02-04"
