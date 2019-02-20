@@ -1,0 +1,11 @@
+Feel free to add in enhancement ideas here
+
+Ideas: 
+
+1. A "tracking feature" where the user can choose to track a specific trip in the event that it becomes cheaper. 
+
+2. https://raw.githubusercontent.com/ggomaeng/react-native-card-modal/master/demo.gif a demo for a card
+
+3. Firebase to store user information
+
+4. 

@@ -1,6 +1,11 @@
 import React from "react"
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground } from "react-native";
 import axios from 'axios';
+
+import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+
+
+// My own helper functions for cleaning up the data returned by Megabus
 import { durationCleaner, dateCleaner } from './helperFunctions/megabusCleaner';
 
 // array of images being used for the results screen
@@ -132,7 +137,7 @@ class ResultsList extends React.Component {
 }
 
 // Results is the component that represents the Result Screen
-export default class Results extends React.Component {
+class Results extends React.Component {
     static navigationOptions = {
         headerTitleStyle: {
             color: 'white',
@@ -203,3 +208,8 @@ export default class Results extends React.Component {
     }
 }
 
+const TabNavigator = createMaterialTopTabNavigator({
+    Megabus: Results
+});
+
+export default createAppContainer(TabNavigator); 
