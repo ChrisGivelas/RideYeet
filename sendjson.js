@@ -2,18 +2,21 @@
 // One of the test files to simulate sending json
 // ==============================================
 
-const axios = require("axios")
+const axios = require("axios");
+const ip = require('ip');
+
+let address = ip.address();
 
 axios({
     method: "post",
-    url: "http://192.168.2.104:8080/trips",
+    url: "http://" + address + ":8080/trips",
     data: {
-        origin: "Kingston",
-        destination: "Toronto",
-        date: "2019-02-19"
+        origin: "Toronto",
+        destination: "Kingston",
+        date: "2019-02-22"
     }
 })
-    .then(results => console.log(results.data))
+    .then(results => console.log(results.data[0]))
 
     .catch(err => console.log(err))
 

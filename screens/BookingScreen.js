@@ -6,15 +6,12 @@ import DatePicker from 'react-native-datepicker';
 
 class BookingScreen extends Component {
 
-
-
     constructor(props) {
         super(props)
         this.state = {
             origin: '?',
             desination: '?',
-            date: (new Date).getFullYear() + "-" + ("0" + ((new Date).getMonth() + 1)).slice(-2) + "-" + (new Date).getDate(),
-            imageUri: "../assets/toBanner.jpg"
+            date: (new Date).getFullYear() + "-" + ("0" + ((new Date).getMonth() + 1)).slice(-2) + "-" + (new Date).getDate()
         };
     }
 
@@ -29,7 +26,7 @@ class BookingScreen extends Component {
     }
 
     // Write code to navigate to search results here here
-    onPressBook = () => this.props.navigation.navigate("Results", { ...this.state });
+    onPressBook = () => this.props.navigation.navigate("Results", { ...this.state, vendor: 'Megabus' });
 
     render() {
         return (

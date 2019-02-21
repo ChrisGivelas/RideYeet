@@ -29,6 +29,9 @@ const kijijiScraper = (originName, destinationName) => {
                     let saleItem = {};
                     saleItem.price = textCleanUp($(this).find('.price').text());
                     saleItem.title = textCleanUp($(this).find('a').text());
+                    saleItem.link = "https://www.kijiji.ca" + ($(this).find('a').first().attr('href'));
+                    saleItem.description = textCleanUp($(this).find('.description').find('p').first().text());
+
                     listAds.push(saleItem);
                     resolve(listAds);
                 });

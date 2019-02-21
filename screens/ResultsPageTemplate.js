@@ -93,8 +93,14 @@ class Results extends React.Component {
 
     render() {
         let { navigation } = this.props;
+        // vendorResults represent the results set to be processed by the ResultsList component.Default is megabus which is index 0
+        let vendorResults = this.state.results[0];
+        if (navigation.getParam('vendor') == 'ViaRail') {
+            vendorResults = this.state.results[1]
+        }
+
         let banner = <Image style={styles.pageHeader} source={require('../assets/toBanner.jpg')} alt={'Megabus Logo'} />
-        let resultSet = this.state.results ? <ResultsList results={this.state.results[0].result} /> : <ActivityIndicator size="large" color="#ff5c5c" />
+        let resultSet = this.state.results ? <ResultsList results={vendorResults.result} /> : <ActivityIndicator size="large" color="#ff5c5c" />
 
 
         if (navigation.getParam('destination') == "Kingston") {
