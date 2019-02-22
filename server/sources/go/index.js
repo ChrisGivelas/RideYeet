@@ -1,6 +1,6 @@
 const csvtojson = require("csvtojson")
 const fs = require("fs")
-const db = require("../../ghettoDB.js")
+const db = require("../../server_assets/ghettoDB.js")
 
 const GTFS_RELATIVE_PATH = "sources/go/gtfs"
 const filesToIgnore = ["shapes.txt", "stop_times", "trips.txt"]

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Component } from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
 
 const styles = StyleSheet.create({
@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default class App extends React.Component {
+export default class App extends Component {
     render() {
         return (
             <View style={styles.containerStyle}>
-                <Image style={styles.imageStyle} source={require("../assets/cardrive.gif")} />
+                <Image style={styles.imageStyle} source={require("../../assets/cardrive.gif")} />
                 <Text style={styles.mainFont}>You're Ready To Start Booking!</Text>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity

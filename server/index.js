@@ -10,8 +10,8 @@ const bodyParser = require("body-parser")
 // ===========================
 
 //Functions for html scrapers
-const { megabusScraper } = require("./megabus")
-const { kijijiScraper } = require("./kijiji")
+const { megabusScraper } = require("./sources/megabus/index.js")
+const { kijijiScraper } = require("./sources/kijiji/index.js")
 
 //Classes for gtfs parsers
 // Call {class Name}.search(origin, destination, date) to retrieve data
@@ -30,16 +30,16 @@ const port = process.env.port || 8080
 const app = express()
 app.use(bodyParser.json())
 
-const callScraper = async function (name, scraper, origin, destination, date) {
+const callScraper = async function(name, scraper, origin, destination, date) {
     var result = await scraper(origin, destination, date)
     return { name, result }
-};
+}
 
 // Send json to this route to get your results
 app.post("/trips", (req, res) => {
     let origin = req.body.origin
     let destination = req.body.destination
-    let date = req.body.date;
+    let date = req.body.date
     console.log("Route was hit\n")
     console.log({ origin, destination, date })
 
@@ -52,14 +52,14 @@ app.post("/trips", (req, res) => {
 
     Promise.all(resultPromises)
         .then(results => {
-            let resultsJson = JSON.stringify(results);
-            res.send(resultsJson);
+            let resultsJson = JSON.stringify(results)
+            res.send(resultsJson)
         })
         .catch(err => console.log(err))
-});
+})
 
-app.get('/', (req, res) => {
-    res.send('Test Route')
+app.get("/", (req, res) => {
+    res.send("Test Route")
 })
 
 // app listens on available port

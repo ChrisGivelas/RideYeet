@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Component } from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
 
 const styles = StyleSheet.create({
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
     }
 })
 
-export default class HomePage extends React.Component {
+export default class HomePage extends Component {
     render() {
         return (
             <View>
                 <View style={styles.containerStyle}>
-                    <Image style={styles.imageStyle} source={require("../assets/MeridioLogo.png")} />
+                    <Image style={styles.imageStyle} source={require("../../assets/MeridioLogo.png")} />
                     <Text style={styles.mainFont}>Welcome To Meridio!</Text>
                 </View>
                 <View style={styles.buttonContainer}>

@@ -1,7 +1,18 @@
-import React, { Component } from 'react';
-import { View, Picker, StyleSheet } from 'react-native'
+import React, { Component } from "react"
+import { View, Picker, StyleSheet } from "react-native"
 
-class LocationPicker extends Component {
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 30,
+        alignSelf: "center",
+        color: "#ff5c5c"
+    },
+    pickerStyle: {
+        width: "50%"
+    }
+})
+
+export default class LocationPicker extends Component {
     constructor(props) {
         super(props)
 
@@ -10,15 +21,15 @@ class LocationPicker extends Component {
         }
     }
 
-    updateUser = (location) => {
+    updateUser = location => {
         this.setState({ selectedLocation: location })
-        this.props.changeState(location);
+        this.props.changeState(location)
     }
 
     render() {
         return (
-            <View >
-                <Picker selectedValue={this.state.selectedLocation} onValueChange={this.updateUser} >
+            <View>
+                <Picker selectedValue={this.state.selectedLocation} onValueChange={this.updateUser}>
                     <Picker.Item label="Please select a city..." value="?" style={styles.pickerStyle} />
                     <Picker.Item label="Toronto" value="Toronto" style={styles.pickerStyle} />
                     <Picker.Item label="Montreal" value="Montreal" style={styles.pickerStyle} />
@@ -30,16 +41,3 @@ class LocationPicker extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    text: {
-        fontSize: 30,
-        alignSelf: 'center',
-        color: '#ff5c5c'
-    },
-    pickerStyle: {
-        width: "50%"
-    }
-});
-
-export default LocationPicker;

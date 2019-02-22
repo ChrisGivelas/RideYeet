@@ -1,30 +1,8 @@
-import React from "react"
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    ScrollView,
-    TouchableOpacity,
-    ActivityIndicator,
-    ImageBackground
-} from "react-native"
+import React, { Component } from "react"
+import { StyleSheet, Text, Image, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native"
 import axios from "axios"
 import { createMaterialTopTabNavigator, createAppContainer } from "react-navigation"
-
-import ResultsList from "./ResultsPage/ResultsList"
-import ViaRail from "./ViaRail"
-
-// My own helper functions for cleaning up the data returned by Megabus
-import { durationCleaner, dateCleaner } from "./helperFunctions/megabusCleaner"
-
-// array of images being used for the results screen
-const sourceImgs = [
-    { name: "Kijiji", path: "../assets/kajLogo.png" },
-    { name: "Megabus", path: "../assets/megaBus.jpg" },
-    { name: "Via", path: "../assets/viaLogo.png" },
-    { name: "Go", path: "../assets/goLogo.jpg" }
-]
+import ResultsList from "./_components/ResultsList"
 
 // Styles
 const styles = StyleSheet.create({
@@ -60,7 +38,7 @@ const styles = StyleSheet.create({
 })
 
 // Results is the component that represents the Result Screen
-class Results extends React.Component {
+class Results extends Component {
     static navigationOptions = {
         headerTitleStyle: {
             color: "white",
@@ -101,7 +79,9 @@ class Results extends React.Component {
 
     render() {
         let { navigation } = this.props
-        let banner = <Image style={styles.pageHeader} source={require("../assets/toBanner.jpg")} alt={"Megabus Logo"} />
+        let banner = (
+            <Image style={styles.pageHeader} source={require("../../assets/toBanner.jpg")} alt={"Megabus Logo"} />
+        )
         let resultSet = this.state.results ? (
             <ResultsList results={this.state.results[0].result} />
         ) : (
@@ -112,19 +92,23 @@ class Results extends React.Component {
             banner = (
                 <Image
                     style={styles.pageHeader}
-                    source={require("../assets/kingstonBannerNew.png")}
+                    source={require("../../assets/kingstonBannerNew.png")}
                     alt={"Megabus Logo"}
                 />
             )
         } else if (navigation.getParam("destination") == "Whitby") {
             banner = (
-                <Image style={styles.pageHeader} source={require("../assets/whitbyBanner.jpg")} alt={"Megabus Logo"} />
+                <Image
+                    style={styles.pageHeader}
+                    source={require("../../assets/whitbyBanner.jpg")}
+                    alt={"Megabus Logo"}
+                />
             )
         } else if (navigation.getParam("destination") == "Waterloo") {
             banner = (
                 <Image
                     style={styles.pageHeader}
-                    source={require("../assets/waterlooBanner.jpg")}
+                    source={require("../../assets/waterlooBanner.jpg")}
                     alt={"Megabus Logo"}
                 />
             )
@@ -132,7 +116,7 @@ class Results extends React.Component {
             banner = (
                 <Image
                     style={styles.pageHeader}
-                    source={require("../assets/montrealBanner.jpg")}
+                    source={require("../../assets/montrealBanner.jpg")}
                     alt={"Megabus Logo"}
                 />
             )
@@ -152,7 +136,7 @@ class Results extends React.Component {
 
 const TabNavigator = createMaterialTopTabNavigator({
     Megabus: Results,
-    ViaRail: ViaRail
+    ViaRail: Results
 })
 
 export default createAppContainer(TabNavigator)
