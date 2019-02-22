@@ -1,6 +1,0 @@
-price
-depart time
-arrive time
-origin
-destination
-description
