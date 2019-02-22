@@ -1,6 +1,6 @@
 const axios = require("axios")
 const cheerio = require("cheerio")
-const { demo_locations, query } = require("../../server_assets/ghettoDB.js")
+const { query } = require("../../server_assets/ghettoDB.js")
 
 // Helper function to clean up the parsed text from cheerio
 const textCleanUp = text => {
@@ -13,8 +13,8 @@ const textCleanUp = text => {
 //      - OriginName: where to search for ride shares
 //      - destinationName: used in the search tag to determine a possible rideshare
 const kijijiScraper = (originName, destinationName) => {
-    let area = query(originName, demo_locations).kijijiName
-    let originID = query(originName, demo_locations).kijiji
+    let area = query(originName).kijijiName
+    let originID = query(originName).kijiji
 
     let kijijiUrl = "https://www.kijiji.ca/b-" + area + "/rideshare-" + destinationName + "/k0l" + originID + "?dc=true"
 

@@ -1,9 +1,9 @@
 const axios = require("axios")
-const { demo_locations, query } = require("../../server_assets/ghettoDB.js")
+const { query } = require("../../server_assets/ghettoDB.js")
 
 const megabusScraper = (origin, destination, date) => {
-    let destinationID = query(destination, demo_locations).megabus
-    let originID = query(origin, demo_locations).megabus
+    let destinationID = query(destination).megabus
+    let originID = query(origin).megabus
     let tripDate = date
 
     let megabusUrl =

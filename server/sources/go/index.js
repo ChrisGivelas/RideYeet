@@ -1,47 +1,57 @@
 const csvtojson = require("csvtojson")
 const fs = require("fs")
-const db = require("../../server_assets/ghettoDB.js")
+const { query } = require("../../server_assets/ghettoDB.js")
 
-const GTFS_RELATIVE_PATH = "sources/go/gtfs"
+const GTFS_RELATIVE_PATH = "server/sources/go/gtfs"
 const filesToIgnore = ["shapes.txt", "stop_times", "trips.txt"]
 
-class Go_GtfsParserService {
-    constructor() {
-        this.files = fs
-            .readdirSync(GTFS_RELATIVE_PATH)
-            .filter(file => !filesToIgnore.includes(file))
-            .map(file => `${GTFS_RELATIVE_PATH}/${file}`)
+const files = fs
+    .readdirSync(GTFS_RELATIVE_PATH)
+    .filter(file => !filesToIgnore.includes(file))
+    .map(file => `${GTFS_RELATIVE_PATH}/${file}`)
 
-        this.gtfsPromises = this.files.map(async file => {
-            return await csvtojson()
-                .fromFile(file)
-                .then(json => {
-                    return { file, json }
-                })
+const gtfsPromises = files.map(async file => {
+    return csvtojson()
+        .fromFile(file)
+        .then(json => {
+            return { file, json }
         })
-    }
+})
 
-    async search(origin, destination) {
-        return await Promise.all(this.gtfsPromises)
-            .then(jsons => {
-                return jsons.reduce((acc, curr) => {
-                    return { ...acc, [curr.file]: curr.json }
-                }, {})
+const goParser = (origin, destination, date) => {
+    return Promise.all(gtfsPromises)
+        .then(jsons => {
+            return jsons.reduce((acc, curr) => {
+                return { ...acc, [curr.file]: curr.json }
+            }, {})
+        })
+        .then(jsons => {
+            var originInfo = query(origin)
+            var destinationInfo = query(destination)
+
+            var originId = originInfo.go
+            var destinationId = destinationInfo.go
+
+            var routes = jsons[`${GTFS_RELATIVE_PATH}/routes.txt`].filter(
+                route => route.route_id === `${originId}-${destinationId}`
+            )
+
+            const mockedRouteData = routes.map(route => {
+                let temp = {}
+                temp.price = Math.floor(Math.random() * 50 + 40)
+                temp.depart = Math.floor(Math.random() * 24)
+                temp.arrive = (temp.depart + 3) % 24
+                temp.origin = origin
+                temp.destination = destination
+                temp.description = route.route_long_name
+
+                return temp
             })
-            .then(jsons => {
-                var originInfo = db.query(origin)
-                var destinationInfo = db.query(destination)
 
-                var originId = originInfo.go
-                var destinationId = destinationInfo.go
-
-                var results = jsons[`${GTFS_RELATIVE_PATH}/routes.txt`].filter(
-                    routes => routes.route_id === `${originId}-${destinationId}`
-                )
-
-                return results
-            })
-    }
+            return mockedRouteData
+        })
 }
 
-module.exports = Go_GtfsParserService
+module.exports = {
+    goParser
+}

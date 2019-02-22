@@ -61,9 +61,10 @@ class Results extends Component {
     componentDidMount() {
         let { navigation } = this.props
         if (this.state.results == null) {
+            //TEMPORARY URL FOR DEVELOPMENT
             axios({
                 method: "post",
-                url: "http://192.168.1.124:8080/trips",
+                url: "http://192.168.1.109:8080/trips",
                 data: {
                     origin: navigation.getParam("origin", "No origin available"),
                     destination: navigation.getParam("destination", "No destination available"),
