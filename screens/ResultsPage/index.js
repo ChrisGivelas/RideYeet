@@ -3,6 +3,7 @@ import { StyleSheet, Text, Image, ScrollView, TouchableOpacity, ActivityIndicato
 import axios from "axios"
 import { createMaterialTopTabNavigator, createAppContainer } from "react-navigation"
 import ResultsList from "./_components/ResultsList"
+import TabPicker from "./_components/TabPicker"
 
 // Styles
 const styles = StyleSheet.create({
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         fontSize: 16,
         position: "absolute",
-        top: 10,
+        top: 20,
         left: 10,
         right: 10,
         bottom: 10
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 })
 
 // Results is the component that represents the Result Screen
-class Results extends Component {
+export default class Results extends Component {
     static navigationOptions = {
         headerTitleStyle: {
             color: "white",
@@ -125,6 +126,7 @@ class Results extends Component {
         return (
             <TouchableOpacity onPress={() => alert("More to come soon")}>
                 <ScrollView style={styles.page}>
+                    <TabPicker />
                     {banner}
                     <Text style={styles.header1}> Your Trip To... </Text>
                     <Text style={styles.header2}> {this.something} </Text>
@@ -135,9 +137,9 @@ class Results extends Component {
     }
 }
 
-const TabNavigator = createMaterialTopTabNavigator({
-    Megabus: Results,
-    ViaRail: Results
-})
+// const TabNavigator = createMaterialTopTabNavigator({
+//     Megabus: Results,
+//     ViaRail: Results
+// })
 
-export default createAppContainer(TabNavigator)
+// export default createAppContainer(TabNavigator)
