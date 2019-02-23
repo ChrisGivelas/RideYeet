@@ -2,8 +2,15 @@ import React, { Component } from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "react-native"
 
 const styles = StyleSheet.create({
-    page: {},
-    button: {}
+    page: {
+
+    },
+    inputField: {
+
+    },
+    button: {
+        
+    }
 })
 
 export default class LoginPage extends Component {
@@ -30,16 +37,11 @@ export default class LoginPage extends Component {
     render() {
         return (
             <View style={styles.page}>
+                <TextInput style={styles.inputField} onChangeText={this.updateEmail(text)} value={this.state.email} />
                 <TextInput
                     style={styles.inputField}
-                    onChangeText
-                    {...this.updateEmail(text)}
-                    value={this.state.email}
-                />
-                <TextInput
-                    style={styles.inputField}
-                    onChangeText
-                    {...this.updatePassword(text)}
+                    secureTextEntry={true}
+                    onChangeText={this.updatePassword(text)}
                     value={this.state.password}
                 />
                 <TouchableOpacity onPress={this._onPressButton}>
